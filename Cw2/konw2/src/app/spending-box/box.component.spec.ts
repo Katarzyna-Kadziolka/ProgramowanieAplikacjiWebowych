@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AppBoxComponent } from './app-box.component';
+import { AppBoxComponent } from './box.component';
 
 describe('AppBoxComponent', () => {
   let component: AppBoxComponent;
