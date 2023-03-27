@@ -1,4 +1,23 @@
 :host {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    width: 300px;
+    align-items: center;
+}
+.icon {
+    width: 20px;
+}
+.values {
+    display: flex;
+    flex-direction: column;
+}
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 150px;
+}
+.cost {
+    font-size: 1.2rem;
 }
