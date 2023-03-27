@@ -6,7 +6,7 @@
     align-items: center;
 }
 .icon {
-    width: 20px;
+    margin-right: 15px;
 }
 .values {
     display: flex;
@@ -15,9 +15,12 @@
 .info {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    align-items: center;
     width: 135px;
 }
 .cost {
     font-size: 1.2rem;
+}
+.menu {
+    opacity: 0.5;
 }

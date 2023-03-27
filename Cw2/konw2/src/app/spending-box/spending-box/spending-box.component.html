@@ -1,11 +1,9 @@
 <div class="info">
-    <img class="icon" src="assets/bag-shopping-solid.svg" type="image/svg+xml" alt="Bag shopping">
+    <fa-icon size="2x" [icon]="icon" class="icon" [style.color]="color"/>
     <div class="values">
-        <span class="cost">{{cost}}</span>
+        <span class="cost" [style.color]="color">{{currency}}</span>
         <span>{{title}}</span>
     </div>
 </div>
-<div>
-    <img class="icon" src="assets/bars-solid.svg"/>
-</div>
+<fa-icon class="menu" size="2x" [icon]="faEllipsis"/>
 
