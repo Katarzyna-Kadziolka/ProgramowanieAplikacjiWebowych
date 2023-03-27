@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faBagShopping, faEllipsis } from '@fortawesome/free-solid-svg-icons';
+import { CurrencyFormatter } from 'src/services/currencyFormatter';
 
 
 @Component({
@@ -9,6 +10,8 @@ import { faBagShopping, faEllipsis } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./spending-box.component.scss']
 })
 export class SpendingBoxComponent {
+  constructor(private currencyFormatter: CurrencyFormatter) {}
+
   faEllipsis = faEllipsis;
   @Input() icon: IconProp = faEllipsis
   @Input() cost = 0
@@ -16,11 +19,6 @@ export class SpendingBoxComponent {
   @Input() color ="#000"
 
   get currency() {
-    const formatter = new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      maximumFractionDigits: 0
-    });
-    return formatter.format(this.cost);
+    return this.currencyFormatter.format(this.cost)
   }
 }

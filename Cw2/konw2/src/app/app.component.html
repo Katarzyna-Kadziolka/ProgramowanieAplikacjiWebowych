@@ -4,3 +4,9 @@
 <app-box>
   <app-spending-box title="Revenue" [cost]=1250 color="#a49cfc" [icon]="faCartShopping"/>
 </app-box>
+<app-box>
+  <app-chart-spending-box color="#68dfa3" title="Total Earings" [valueWithPreviousValue]="totalEarnings"/>
+</app-box>
+<app-box>
+  <app-chart-spending-box color="#a49cfc" title="Products Sold" [valueWithPercentageChangen]="producsSold"/>
+</app-box>

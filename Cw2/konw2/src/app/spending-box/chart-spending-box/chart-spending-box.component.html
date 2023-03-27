@@ -1,1 +1,9 @@
-<p>chart-spending-box works!</p>
+<span class="title">{{title}}</span>
+<fa-icon size="3x" [icon]="faChartLine" class="diagram" [style.color]="color"/>
+<div class="values">
+    <span class="currency">{{amount}}</span>
+    <div class="percentage" [style.color]="percentageColor">
+        <fa-icon size="xs" [icon]="arrow"/>
+        <span>{{percentageText}}</span>
+    </div>
+</div>
