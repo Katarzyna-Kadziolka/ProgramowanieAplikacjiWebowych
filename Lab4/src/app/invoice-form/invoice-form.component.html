@@ -44,3 +44,95 @@
         <span *ngIf="invoiceIssuer.controls.PostCode.touched && invoiceIssuer.controls.PostCode.errors !== null" class="formErrors">{{ invoiceIssuer.controls.PostCode.errors | json }}</span>
     </div>
 </div>
+<div [formGroup]="orderer" class="form">
+    <span class="formName">Orderer</span>
+    <div>
+        <div class="formElement">
+            <span>Name:</span>
+            <input type="text" formControlName="Name">  
+        </div>
+        <span *ngIf="orderer.controls.Name.touched && orderer.controls.Name.errors !== null" class="formErrors">{{ orderer.controls.Name.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>City:</span>
+            <input type="text" formControlName="City">
+        </div>
+        <span *ngIf="orderer.controls.City.touched && orderer.controls.City.errors !== null" class="formErrors">{{ orderer.controls.City.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Address:</span>
+            <input type="text" formControlName="Address">
+        </div>
+        <span *ngIf="orderer.controls.Address.touched && orderer.controls.Address.errors !== null" class="formErrors">{{ orderer.controls.Address.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>NIP:</span>
+            <input type="text" formControlName="Nip">
+        </div>
+        <span *ngIf="orderer.controls.Nip.touched && orderer.controls.Nip.errors !== null" class="formErrors">{{ orderer.controls.Nip.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Post code:</span>
+            <input type="text" formControlName="PostCode">
+        </div>
+        <span *ngIf="orderer.controls.PostCode.touched && orderer.controls.PostCode.errors !== null" class="formErrors">{{ orderer.controls.PostCode.errors | json }}</span>
+    </div>
+</div>
+<div *ngFor="let invoiceItem of invoice.controls['InvoiceItems'].controls; let i=index" [formGroup]="invoiceItem" class="form">
+    <span class="formName">Item</span>
+    <div>
+        <div class="formElement">
+            <span>Name:</span>
+            <input type="text" formControlName="Name">  
+        </div>
+        <span *ngIf="invoiceItem.controls.Name.touched && invoiceItem.controls.Name.errors !== null" class="formErrors">{{ invoiceItem.controls.Name.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Amount:</span>
+            <input type="text" formControlName="Amount">
+        </div>
+        <span *ngIf="invoiceItem.controls.Amount.touched && invoiceItem.controls.Amount.errors !== null" class="formErrors">{{ invoiceItem.controls.Amount.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Unit meassure:</span>
+            <input type="text" formControlName="UnitMeassure">
+        </div>
+        <span *ngIf="invoiceItem.controls.UnitMeassure.touched && invoiceItem.controls.UnitMeassure.errors !== null" class="formErrors">{{ invoiceItem.controls.UnitMeassure.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Net price:</span>
+            <input type="text" formControlName="NetPrice">
+        </div>
+        <span *ngIf="invoiceItem.controls.NetPrice.touched && invoiceItem.controls.NetPrice.errors !== null" class="formErrors">{{ invoiceItem.controls.NetPrice.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Net worth:</span>
+            <input type="text" formControlName="NetWorth">
+        </div>
+        <span *ngIf="invoiceItem.controls.NetWorth.touched && invoiceItem.controls.NetWorth.errors !== null" class="formErrors">{{ invoiceItem.controls.NetWorth.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Gross value:</span>
+            <input type="text" formControlName="GrossValue">
+        </div>
+        <span *ngIf="invoiceItem.controls.GrossValue.touched && invoiceItem.controls.GrossValue.errors !== null" class="formErrors">{{ invoiceItem.controls.GrossValue.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Vat rate:</span>
+            <select formControlName="VatRate" class="formSelect">
+                <option *ngFor="let vateRate of VateRate | keyvalue"> {{vateRate.value}} </option>
+            </select>
+        </div>
+    </div>
+</div>
+<button (click)="onAddItemClick()" class="addItem">Add item</button>

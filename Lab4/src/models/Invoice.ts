@@ -9,7 +9,7 @@ export type Invoice = {
     InvoiceNumber: number,
     IssueDate: Date,
     SaleDate: Date,
-    PeymentDeadline: Date,
+    PaymentDeadline: Date,
     PaymentMethod: PaymentMethod,
     InvoiceItems: InvoiceItem[]
 }
