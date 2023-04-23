@@ -1,5 +1,5 @@
 import { FormControl } from "@angular/forms"
-import { VateRate } from "./VatRate"
+import { VateRate } from "../../../models/VatRate"
 
 export type InvoiceItemForm = {
     Name: FormControl<string>,

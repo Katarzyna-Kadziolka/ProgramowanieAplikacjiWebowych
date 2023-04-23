@@ -1,1 +1,46 @@
-<p>invoice-form works!</p>
+<span class="title">Invoice</span>
+<div [formGroup]="invoiceIssuer" class="form">
+    <span class="formName">Invoice issuer</span>
+    <div>
+        <div class="formElement">
+            <span>Name:</span>
+            <input type="text" formControlName="Name">  
+        </div>
+        <span *ngIf="invoiceIssuer.controls.Name.touched && invoiceIssuer.controls.Name.errors !== null" class="formErrors">{{ invoiceIssuer.controls.Name.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>City:</span>
+            <input type="text" formControlName="City">
+        </div>
+        <span *ngIf="invoiceIssuer.controls.City.touched && invoiceIssuer.controls.City.errors !== null" class="formErrors">{{ invoiceIssuer.controls.City.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Address:</span>
+            <input type="text" formControlName="Address">
+        </div>
+        <span *ngIf="invoiceIssuer.controls.Address.touched && invoiceIssuer.controls.Address.errors !== null" class="formErrors">{{ invoiceIssuer.controls.Address.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Account number:</span>
+            <input type="text" formControlName="AccountNumber">
+        </div>
+        <span *ngIf="invoiceIssuer.controls.AccountNumber.touched && invoiceIssuer.controls.AccountNumber.errors !== null" class="formErrors">{{ invoiceIssuer.controls.AccountNumber.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>NIP:</span>
+            <input type="text" formControlName="Nip">
+        </div>
+        <span *ngIf="invoiceIssuer.controls.Nip.touched && invoiceIssuer.controls.Nip.errors !== null" class="formErrors">{{ invoiceIssuer.controls.Nip.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Post code:</span>
+            <input type="text" formControlName="PostCode">
+        </div>
+        <span *ngIf="invoiceIssuer.controls.PostCode.touched && invoiceIssuer.controls.PostCode.errors !== null" class="formErrors">{{ invoiceIssuer.controls.PostCode.errors | json }}</span>
+    </div>
+</div>

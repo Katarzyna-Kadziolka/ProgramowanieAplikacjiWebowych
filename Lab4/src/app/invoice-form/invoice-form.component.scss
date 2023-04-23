@@ -1,0 +1,38 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+span {
+    font-family: 'Calibri';
+}
+
+.title {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    border: 2px black solid;
+    margin: 10px;
+    padding: 15px;
+    width: 20%;
+}
+
+.formName {
+    font-weight: bold
+}
+
+.formErrors {
+    color: red;
+    font-size: 10px;
+}
+
+.formElement {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+}

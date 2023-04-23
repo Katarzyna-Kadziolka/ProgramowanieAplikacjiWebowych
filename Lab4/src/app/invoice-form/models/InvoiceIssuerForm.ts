@@ -1,10 +1,10 @@
 import { FormControl } from "@angular/forms"
 
 export type InvoiceIssuerForm = {
-    Name: FormControl<string>,
-    City: FormControl<string>,
-    Address: FormControl<string>,
-    PostCode: FormControl<number>,
-    Nip: FormControl<number>,
-    AccountNumber: FormControl<number>
+    Name: FormControl<string | null>,
+    City: FormControl<string | null>,
+    Address: FormControl<string | null>,
+    PostCode: FormControl<number | null>,
+    Nip: FormControl<number | null>,
+    AccountNumber: FormControl<number | null>
 }
