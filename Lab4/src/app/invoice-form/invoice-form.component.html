@@ -82,6 +82,45 @@
         <span *ngIf="orderer.controls.PostCode.touched && orderer.controls.PostCode.errors !== null" class="formErrors">{{ orderer.controls.PostCode.errors | json }}</span>
     </div>
 </div>
+<div [formGroup]="invoice" class="form">
+    <span class="formName">Other</span>
+    <div>
+        <div class="formElement">
+            <span>Invoice number:</span>
+            <input type="text" formControlName="InvoiceNumber">  
+        </div>
+        <span *ngIf="invoice.controls.InvoiceNumber.touched && invoice.controls.InvoiceNumber.errors !== null" class="formErrors">{{ invoice.controls.InvoiceNumber.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Issue date:</span>
+            <input type="text" formControlName="IssueDate">
+        </div>
+        <span *ngIf="invoice.controls.IssueDate.touched && invoice.controls.IssueDate.errors !== null" class="formErrors">{{ invoice.controls.IssueDate.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Sale date:</span>
+            <input type="text" formControlName="SaleDate">
+        </div>
+        <span *ngIf="invoice.controls.SaleDate.touched && invoice.controls.SaleDate.errors !== null" class="formErrors">{{ invoice.controls.SaleDate.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Payment deadline:</span>
+            <input type="text" formControlName="PaymentDeadline">
+        </div>
+        <span *ngIf="invoice.controls.PaymentDeadline.touched && invoice.controls.PaymentDeadline.errors !== null" class="formErrors">{{ invoice.controls.PaymentDeadline.errors | json }}</span>
+    </div>
+    <div>
+        <div class="formElement">
+            <span>Payment method:</span>
+            <select formControlName="PaymentMethod" class="formSelect">
+                <option *ngFor="let paymentMethod of PaymentMethod | keyvalue"> {{paymentMethod.value}} </option>
+            </select>
+        </div>
+    </div>
+</div>
 <div *ngFor="let invoiceItem of invoice.controls['InvoiceItems'].controls; let i=index" [formGroup]="invoiceItem" class="form">
     <span class="formName">Item</span>
     <div>
@@ -114,10 +153,8 @@
     </div>
     <div>
         <div class="formElement">
-            <span>Net worth:</span>
-            <input type="text" formControlName="NetWorth">
+            <span>Net worth: {{invoiceItem.controls.NetWorth.value}}</span>
         </div>
-        <span *ngIf="invoiceItem.controls.NetWorth.touched && invoiceItem.controls.NetWorth.errors !== null" class="formErrors">{{ invoiceItem.controls.NetWorth.errors | json }}</span>
     </div>
     <div>
         <div class="formElement">
@@ -136,3 +173,9 @@
     </div>
 </div>
 <button (click)="onAddItemClick()" class="addItem">Add item</button>
+<div class="form">
+    <span class="formName">Summary</span>
+    <span>Sum net: {{sumNet}}</span>
+    <span>Sum gross: {{sumGross}}</span>
+    <span>Sum VAT: {{sumVat}}</span>
+</div>

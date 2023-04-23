@@ -1,5 +1,5 @@
+import { RouterModule } from '@angular/router';
 import { PaymentMethod } from './../../models/PaymentMethod';
-import { InvoiceItem } from './../../models/InvoiceItem';
 import { VateRate } from './../../models/VatRate';
 import { InvoiceItemForm } from './models/InvoiceItemForm';
 import { InvoiceIssuerForm } from './models/InvoiceIssuerForm';
@@ -52,7 +52,42 @@ export class InvoiceFormComponent implements OnInit {
       InvoiceItems: this.fb.array<FormGroup<InvoiceItemForm>>([])
     })
 
-    this.invoiceIssuer.valueChanges.subscribe(i => console.log(i))
+    this.invoice.controls.InvoiceItems.valueChanges.subscribe(this.calculateSummary)
+  }
+
+  sumNet = 0;
+  sumGross = 0;
+  sumVat = 0;
+  calculateSummary = () => {
+    this.sumNet = 0;
+    this.sumGross = 0;
+    this.sumVat = 0;
+
+    for (const item in this.invoice.controls.InvoiceItems.controls) {
+      const itemDetails = this.invoice.controls.InvoiceItems.controls[item].value;
+      if(itemDetails.GrossValue && itemDetails.VatRate) {
+        this.sumGross += itemDetails.GrossValue
+        itemDetails.NetWorth = this.calculateNetWorth(itemDetails.VatRate, itemDetails.GrossValue);
+        this.sumNet += itemDetails.NetWorth
+        this.sumVat = itemDetails.GrossValue - itemDetails.NetWorth
+      }
+      
+    }
+  }
+
+  calculateNetWorth = (vateRate: VateRate, grossValue: number) => {
+    switch(vateRate) {
+      case VateRate.Zw:
+        return grossValue;
+      case VateRate.Zero:
+        return grossValue;
+      case VateRate.Five:
+        return 0.95 * grossValue;
+      case VateRate.Eight:
+        return 0.92 * grossValue;
+      case VateRate.TwentyThree:
+        return 0.77 * grossValue; 
+    }
   }
 
   onAddItemClick = () => {
@@ -62,7 +97,7 @@ export class InvoiceFormComponent implements OnInit {
       UnitMeassure: ["", [Validators.required]],
       NetPrice: [0, [Validators.required]],
       VatRate: this.fb.nonNullable.control(VateRate.Zero),
-      NetWorth: [0, [Validators.required]],
+      NetWorth: [0],
       GrossValue: [0, [Validators.required]],
     })
     this.invoice.controls.InvoiceItems.push(invoiceItem);
