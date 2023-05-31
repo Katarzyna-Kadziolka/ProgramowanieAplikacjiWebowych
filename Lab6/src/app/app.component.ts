@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { debounceTime, filter, find, fromEvent, interval, map, mergeMap, of, pipe, sampleTime, take, throttleTime, toArray } from 'rxjs';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import { debounceTime, filter, find, fromEvent, interval, map, mergeMap, of, pipe, sampleTime, scan, take, throttleTime, toArray } from 'rxjs';
 import * as Rx from "rxjs";
 
 @Component({
@@ -7,7 +7,7 @@ import * as Rx from "rxjs";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   title = 'Lab6';
   arr : number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
   
@@ -85,6 +85,24 @@ export class AppComponent {
       .subscribe((coordinates) => {
         console.log('Koordynaty kursora:', coordinates);
       });
+  }
+
+  @ViewChild('textInput') textInput!: ElementRef<HTMLInputElement>;
+  ngAfterViewInit(): void {
+    if (this.textInput) {
+      fromEvent(this.textInput.nativeElement, 'input')
+        .pipe(
+          debounceTime(300),
+          map((event: Event) => {
+            return (event.target as HTMLInputElement).value;
+          }),
+          filter((input) => input !== ''),
+          scan((acc, curr) => [...acc, curr], [] as string[])
+        )
+        .subscribe((searchHistory) => {
+          console.log('Historia wyszukiwania:', searchHistory);
+        });
+    }
   }
 }
 
