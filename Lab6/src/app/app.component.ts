@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { filter, find, interval, map, mergeMap, of, pipe, take, toArray } from 'rxjs';
+import { filter, find, fromEvent, interval, map, mergeMap, of, pipe, take, toArray } from 'rxjs';
 import * as Rx from "rxjs";
 
 @Component({
@@ -57,6 +57,18 @@ export class AppComponent {
       })
     );
   }
-  startDate = new Date(); // Bieżąca data
+  startDate = new Date();
   getDate = this.emitDatesFrom(this.startDate).subscribe(date => console.log(date));
+
+  ngOnInit(): void {
+    fromEvent<MouseEvent>(document, 'click')
+      .pipe(
+        map((event: MouseEvent) => {
+          return { x: event.clientX, y: event.clientY };
+        })
+      )
+      .subscribe((coordinates) => {
+        console.log('Koordynaty myszy:', coordinates);
+      });
+  }
 }
